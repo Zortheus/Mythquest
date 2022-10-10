@@ -1,5 +1,15 @@
 # Mythquest
 Testing Text RPG Ideas
+
+Update v0.2.1
+Date: 10/10/2022
+
+  1. Added Jester Class
+  2. Added Treasure Map and Jewel Adventures
+  3. Modified formatting of encounters
+  4. Updated Items menu for new items
+  5. Updated The End screen and victory conditions
+
 _________________________
 
 Update v0.2.0
