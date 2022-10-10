@@ -1,0 +1,6 @@
+Attacked by bandits.
+Attacked by wolves.
+Found a potion.
+Found a sword.
+Fell off a cliff.
+Took an arrow to the knee.
