@@ -19,13 +19,17 @@ int playerAgi;
 int playerTou;
 int playerMnd;
 int playerCha;
-int nextLevelUp = 1;
+int nextLevelUp = 10;
+
+bool hasKey = false;
+bool bossSlain = false;
 
 void Choose_Class()
 {
     cout << "Choose a " << BOLDWHITE << "CLASS.\n" << RESET << endl;
     cout << " ENTER 1 | " << BOLDRED << " KNIGHT" << RESET << endl;
     cout << " ENTER 2 | " << BOLDBLUE << " WIZARD" << RESET << endl;
+    cout << " ENTER 3 | " << BOLDGREEN << " ARCHER" << RESET << endl;
     cout << endl;
 
     cin.clear();
@@ -42,7 +46,7 @@ void Choose_Class()
             playerColor = BOLDRED;
 
             playerLevel = 1;        
-            cout << "You have selected " << playerColor << "KNIGHT" << RESET << endl;
+            cout << "You have selected " << playerColor << playerClassName << RESET << endl;
             
             // Set Stats
             playerHP = 10;
@@ -50,8 +54,8 @@ void Choose_Class()
             playerMP = 0;
             playerMPTotal = 0;
             playerGold = 5;
-            playerStr = 10;
-            playerAgi = 8;
+            playerStr = 12;
+            playerAgi = 6;
             playerTou = 12;
             playerMnd = 4;
             playerCha = 6;
@@ -62,7 +66,7 @@ void Choose_Class()
             playerColor = BOLDBLUE; 
 
             playerLevel = 1;  
-            cout << "You have selected " << playerColor << "WIZARD" << RESET << endl;
+            cout << "You have selected " << playerColor << playerClassName << RESET << endl;
             RESET;
 
             // Set Stats
@@ -76,6 +80,27 @@ void Choose_Class()
             playerTou = 8;
             playerMnd = 12;
             playerCha = 10;
+    } else if (playerClassNum == 3) {
+
+            playerClassName = "ARCHER"; 
+            playerImage = drawArcher;  
+            playerColor = BOLDGREEN; 
+
+            playerLevel = 1;  
+            cout << "You have selected " << playerColor << playerClassName << RESET << endl;
+            RESET;
+
+            // Set Stats
+            playerHP = 8;
+            playerHPTotal = 8;
+            playerMP = 0;
+            playerMPTotal = 0;
+            playerGold = 10;
+            playerStr = 6;
+            playerAgi = 12;
+            playerTou = 8;
+            playerMnd = 6;
+            playerCha = 8;
     } else {
         cout << "Try again." << endl;
         Choose_Class();
@@ -112,7 +137,7 @@ void Print_playerStats()
     cout << BOLDRED << "HP        |   " << RESET << playerHP << " / " << playerHPTotal << endl;
     cout << BOLDBLUE << "MP        |   " << RESET << playerMP << " / " << playerMPTotal << endl;
     cout << BOLDYELLOW << "Gold      |   " << RESET << playerGold << "\n" << endl;
-    cout << BOLDWHITE << "XP        |   " << RESET << playerXP << "\n" << endl;
+    cout << BOLDWHITE << "XP        |   " << RESET << playerXP << " / " << nextLevelUp << "\n" << endl;
     cout << BOLDCYAN << "Strength  |   " << RESET << playerStr << endl;
     cout << BOLDCYAN << "Agility   |   " << RESET << playerAgi << endl;
     cout << BOLDCYAN << "Toughness |   " << RESET <<  playerTou << endl;
@@ -121,6 +146,15 @@ void Print_playerStats()
     cout << endl;
 
     sleep(1);
+}
+
+void Story_Screen()
+{
+    system("clear");
+    sleep(1);
+
+    DrawArt(drawStoryScreen);
+    sleep(5);
 }
 
 void New_Character()
@@ -132,4 +166,6 @@ void New_Character()
     Print_playerImage();
     Print_playerStats();
     Draw_Loading();
+
+    Story_Screen();
 }
