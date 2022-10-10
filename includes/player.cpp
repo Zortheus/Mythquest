@@ -22,6 +22,8 @@ int playerCha;
 int nextLevelUp = 10;
 
 bool hasKey = false;
+bool hasMap = false;
+bool hasJewel = false;
 bool bossSlain = false;
 
 void Choose_Class()
@@ -30,6 +32,7 @@ void Choose_Class()
     cout << " ENTER 1 | " << BOLDRED << " KNIGHT" << RESET << endl;
     cout << " ENTER 2 | " << BOLDBLUE << " WIZARD" << RESET << endl;
     cout << " ENTER 3 | " << BOLDGREEN << " ARCHER" << RESET << endl;
+    cout << " ENTER 4 | " << BOLDYELLOW << " JESTER" << RESET << endl;
     cout << endl;
 
     cin.clear();
@@ -101,6 +104,27 @@ void Choose_Class()
             playerTou = 8;
             playerMnd = 6;
             playerCha = 8;
+    } else if (playerClassNum == 4) {
+
+        playerClassName = "JESTER"; 
+        playerImage = drawJester;  
+        playerColor = BOLDYELLOW; 
+
+        playerLevel = 1;  
+        cout << "You have selected " << playerColor << playerClassName << RESET << endl;
+        RESET;
+
+        // Set Stats
+        playerHP = 7;
+        playerHPTotal = 7;
+        playerMP = 4;
+        playerMPTotal = 4;
+        playerGold = 10;
+        playerStr = 4;
+        playerAgi = 9;
+        playerTou = 6;
+        playerMnd = 9;
+        playerCha = 12;
     } else {
         cout << "Try again." << endl;
         Choose_Class();
@@ -148,12 +172,34 @@ void Print_playerStats()
     sleep(1);
 }
 
+void Level_Up_Stats()
+{
+    playerLevel++;
+    playerStr++;
+    playerAgi++;
+    playerTou++;
+    playerMnd++;
+    playerCha++;
+    playerHPTotal++;
+    playerMPTotal++;
+    playerHP = playerHPTotal;
+    playerMP = playerMPTotal;
+    playerXP = playerXP - nextLevelUp;
+    nextLevelUp = nextLevelUp + 5;
+
+    if (playerXP < 0)
+        playerXP = 0;
+}
+
 void Story_Screen()
 {
     system("clear");
     sleep(1);
 
+    cout << BOLDYELLOW;
     DrawArt(drawStoryScreen);
+    cout << RESET;
+
     sleep(5);
 }
 

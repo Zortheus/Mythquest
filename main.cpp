@@ -2,7 +2,7 @@
 // A text-based RPG for Mac Terminal
 // by AJP
 //
-// v0.2.0
+// v0.2.1
 
 #include "includes/header.cpp" 
 #include "includes/player.cpp"
@@ -18,12 +18,18 @@ void Boss_Fight()
 {
     system("clear");
 
+    cout << BOLDWHITE;
     DrawArt(drawCastle);
+    cout << RESET;
+
     sleep(3);
 
     if (hasKey == true)
     {
+        cout << BOLDYELLOW;
         DrawArt(drawKey);
+        cout << RESET;
+
         sleep(1);
         cout << "Used CASTLE KEY!" << endl;
         sleep(1);
@@ -38,8 +44,14 @@ void Boss_Fight()
         sleep(3);
         cout << "\n" << BOLDMAGENTA << "Are you strong enough to defeat him?" << RESET << endl;
         sleep(3);
+        cout << ".";
+        sleep(1);
+        cout << ".";
+        sleep(1);
+        cout << ".";
+        sleep(1);
 
-        if (playerStr >= 15 || playerAgi >= 15 || playerMnd >= 15)
+        if (playerLevel >= 5)
         {
             cout << "\nDEMOTAUR HAS BEEN SLAIN!" << endl;
             sleep(3);
@@ -85,25 +97,6 @@ void Title_Screen()
     system("clear");
 }
 
-void Level_Up_Stats()
-{
-    playerLevel++;
-    playerStr++;
-    playerAgi++;
-    playerTou++;
-    playerMnd++;
-    playerCha++;
-    playerHPTotal++;
-    playerMPTotal++;
-    playerHP = playerHPTotal;
-    playerMP = playerMPTotal;
-    playerXP = playerXP - nextLevelUp;
-    nextLevelUp = nextLevelUp + 5;
-
-    if (playerXP < 0)
-        playerXP = 0;
-}
-
 void Level_Up_Menu()
 {
     system("clear");
@@ -144,6 +137,9 @@ void Adventure_Menu()
     {
         Level_Up_Menu();
     }
+
+    if (playerGold < 0)
+        playerGold = 0;
 }
 
 void Shop_Menu()
@@ -156,7 +152,7 @@ void Shop_Menu()
     cout << "\nWelcome, " << playerColor << playerName << RESET << "!" << endl;
     cout << "\n\nCurrent HP   | " << BOLDRED << playerHP << RESET << " / " << BOLDRED << playerHPTotal << RESET << endl;
     cout << "\nCurrent Gold | " << BOLDYELLOW << playerGold << RESET << "\n\n\n\n";
-    cout << "PRESS 1    | " << BOLDRED << "POTION" << RESET << " - " << BOLDYELLOW << "5 Gold" << RESET << endl;
+    cout << "PRESS 1 | " << BOLDRED << "POTION" << RESET << " - " << BOLDYELLOW << "5 Gold" << RESET << endl;
     cout << "\n\n\n";
     cout << BOLDBLACK << "PRESS 0    | EXIT" << RESET << "\n\n";
 
@@ -167,13 +163,24 @@ void Shop_Menu()
     cout << endl;
     if (shopMenuNum == 1 && playerGold >= 5)
     {
+        system("clear");
+
+        cout << BOLDRED;
+        DrawArt(drawPotion);
+        cout << RESET;
+        sleep(1);
+
         playerHP = playerHPTotal;
         playerGold = playerGold - 5;
-        cout << "Drank potion." << endl;
-        cout << "\nCurrent HP : " << playerHP << " / " << playerHPTotal << endl;
+        cout << "\nDrank potion." << endl;
+        cout << "\nCurrent HP : " << BOLDRED << playerHP << " / " << playerHPTotal << RESET << endl;
         cout << "Current Gold : " << BOLDYELLOW << playerGold << RESET << endl;
         cout << endl;
-        sleep(5);
+        sleep(4);
+    } else if (shopMenuNum == 1 && playerGold < 5) {
+        cout << "\nNot enough gold!" << endl;
+        sleep(2);
+        Shop_Menu();
     } else if (shopMenuNum == 0) {
     } else {
         Shop_Menu();
@@ -191,11 +198,19 @@ void Item_Menu()
     DrawArt(drawItemMenu);
 
     cout << "\n\n\n";
+
     if (hasKey == true)
-        cout << "- CASTLE KEY" << "\n\n\n\n";
+        cout << "- CASTLE KEY \n\n";
+    
+    if (hasMap == true)
+        cout << "- TREASURE MAP \n\n";
+
+    if (hasJewel == true)
+        cout << "- JEWEL \n\n";
 
     sleep(1);
 
+    cout << "\n\n\n";
     cout << BOLDBLACK << "PRESS 0    | EXIT" << RESET << "\n\n";
 
     // Item Menu Selection
@@ -296,10 +311,14 @@ void Victory_Menu()
 {
     system("clear");
     DrawArt(drawVictory);
+    sleep(1);
+    DrawArt(drawTheEnd);
     sleep(3);
-    cout << endl;
-    cout << playerColor << playerName << RESET << " has slain the boss to become a hero." << endl;
-    cout << "\nThank you for playing MYTHQUEST" << endl;
+    cout << "\n\n";
+    Print_playerImage();
+    cout << playerColor << playerName << RESET << " found the key, slayed the boss, and become a true hero." << endl;
+    sleep(3);
+    cout << "\n\n\nThank you for playing MYTHQUEST!" << endl;
     sleep(5);
 }
 
