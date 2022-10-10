@@ -1,3 +1,9 @@
+// MYTHQUEST
+// A text-based RPG for Mac Terminal
+// by AJP
+//
+// v0.1.0
+
 #include "includes/header.cpp" 
 #include "includes/player.cpp"
 #include "includes/monster.cpp"
