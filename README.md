@@ -1,5 +1,18 @@
 # Mythquest
 Testing Text RPG Ideas
+_________________________
+
+Update v0.2.0
+Date: 10/10/2022
+
+  1. Added Archer Class
+  2. Added Castle, Key, Boss Fight, Menu Select
+  3. Added Victory Screen
+  4. Added Story Screen
+  5. Modified encounters and adventures
+  
+  
+___________________________  
 
 Update v0.1.0 
 Date: 10/09/2022
@@ -14,3 +27,4 @@ Date: 10/09/2022
     b. Added Level Up System
     c. Added Adventure System
   6. Added Shop Menu
+ 
