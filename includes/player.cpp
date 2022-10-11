@@ -87,11 +87,11 @@ void Choose_Class()
         playerMP = 10;
         playerMPTotal = 10;
         playerGold = 20;
-        playerStr = 4;
+        playerStr = 5;
         playerAgi = 6;
         playerTou = 8;
         playerMnd = 12;
-        playerCha = 10;
+        playerCha = 9;
         damageStat = (playerMnd / 4);
         defenseStat = (playerTou / 4);
 
