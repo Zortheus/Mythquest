@@ -1,24 +1,4 @@
-//#include "header.h"
-#include <iostream>
-#include <vector>
-#include <unistd.h>
-#include <iomanip> 
-#include <fstream>
-#include <string>
-#include <chrono>
-#include <thread>
-
-//standard
-using std::cout;
-using std::cin;
-using std::string;
-using std::endl;
-using std::setw;
-using std::ifstream;
-using std::pair;
-using std::vector;
-using std::getline;
-using std::chrono::milliseconds;
+#include "colors.h"
 
 //colors
 #define RESET   "\033[0m"
@@ -38,5 +18,3 @@ using std::chrono::milliseconds;
 #define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
 #define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
 #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
-
-#define BEEP "\007"

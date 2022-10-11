@@ -1,12 +1,14 @@
 #include "header.cpp"
 #include "draw.cpp"
 
-// Player Stats
+// Player attributes
 string playerName;
 int playerClassNum;
 string playerClassName;
 string playerImage;
 string playerColor;
+
+// Player Stats
 int playerLevel;
 int playerXP;
 int playerHP;
@@ -19,6 +21,10 @@ int playerAgi;
 int playerTou;
 int playerMnd;
 int playerCha;
+int damageStat;
+int defenseStat;
+
+// Game State
 int nextLevelUp = 10;
 
 bool hasKey = false;
@@ -33,7 +39,7 @@ void Choose_Class()
     cout << " ENTER 2 | " << BOLDBLUE << " WIZARD" << RESET << endl;
     cout << " ENTER 3 | " << BOLDGREEN << " ARCHER" << RESET << endl;
     cout << " ENTER 4 | " << BOLDYELLOW << " JESTER" << RESET << endl;
-    cout << endl;
+    cout << BEEP << endl;
 
     cin.clear();
     cout << "> ";
@@ -44,66 +50,75 @@ void Choose_Class()
 
     if (playerClassNum == 1)
     {
-            playerClassName = "KNIGHT";
-            playerImage = drawKnight;
-            playerColor = BOLDRED;
+        playerClassName = "KNIGHT";
+        playerImage = drawKnight;
+        playerColor = BOLDRED;
+        
+        playerLevel = 1;        
+        cout << "You have selected " << playerColor << playerClassName << RESET << endl;
+        
+        // Set Stats
+        playerHP = 10;
+        playerHPTotal = 10;
+        playerMP = 0;
+        playerMPTotal = 0;
+        playerGold = 5;
+        playerStr = 12;
+        playerAgi = 6;
+        playerTou = 12;
+        playerMnd = 4;
+        playerCha = 6;
+        damageStat = (playerStr / 4);
+        defenseStat = (playerTou / 4);
 
-            playerLevel = 1;        
-            cout << "You have selected " << playerColor << playerClassName << RESET << endl;
-            
-            // Set Stats
-            playerHP = 10;
-            playerHPTotal = 10;
-            playerMP = 0;
-            playerMPTotal = 0;
-            playerGold = 5;
-            playerStr = 12;
-            playerAgi = 6;
-            playerTou = 12;
-            playerMnd = 4;
-            playerCha = 6;
     } else if (playerClassNum == 2) {
 
-            playerClassName = "WIZARD"; 
-            playerImage = drawWizard;  
-            playerColor = BOLDBLUE; 
+        playerClassName = "WIZARD"; 
+        playerImage = drawWizard;  
+        playerColor = BOLDBLUE;
+        
+        playerLevel = 1;  
+        cout << "You have selected " << playerColor << playerClassName << RESET << endl;
+        RESET;
 
-            playerLevel = 1;  
-            cout << "You have selected " << playerColor << playerClassName << RESET << endl;
-            RESET;
+        // Set Stats
+        playerHP = 6;
+        playerHPTotal = 6;
+        playerMP = 10;
+        playerMPTotal = 10;
+        playerGold = 20;
+        playerStr = 4;
+        playerAgi = 6;
+        playerTou = 8;
+        playerMnd = 12;
+        playerCha = 10;
+        damageStat = (playerMnd / 4);
+        defenseStat = (playerTou / 4);
 
-            // Set Stats
-            playerHP = 6;
-            playerHPTotal = 6;
-            playerMP = 10;
-            playerMPTotal = 10;
-            playerGold = 20;
-            playerStr = 4;
-            playerAgi = 6;
-            playerTou = 8;
-            playerMnd = 12;
-            playerCha = 10;
     } else if (playerClassNum == 3) {
 
-            playerClassName = "ARCHER"; 
-            playerImage = drawArcher;  
-            playerColor = BOLDGREEN; 
+        playerClassName = "ARCHER"; 
+        playerImage = drawArcher;  
+        playerColor = BOLDGREEN; 
 
-            playerLevel = 1;  
-            cout << "You have selected " << playerColor << playerClassName << RESET << endl;
-            RESET;
+        playerLevel = 1;  
+        cout << "You have selected " << playerColor << playerClassName << RESET << endl;
+        RESET;
 
-            // Set Stats
-            playerHP = 8;
-            playerHPTotal = 8;
-            playerMP = 0;
-            playerMPTotal = 0;
-            playerGold = 10;
-            playerStr = 6;
-            playerAgi = 12;
-            playerTou = 8;
-            playerMnd = 6;
-            playerCha = 8;
+        // Set Stats
+        playerHP = 8;
+        playerHPTotal = 8;
+        playerMP = 0;
+        playerMPTotal = 0;
+        playerGold = 10;
+        playerStr = 6;
+        playerAgi = 12;
+        playerTou = 8;
+        playerMnd = 6;
+        playerCha = 8;
+        damageStat = (playerAgi / 4);
+        defenseStat = (playerTou / 4);
+
     } else if (playerClassNum == 4) {
 
         playerClassName = "JESTER"; 
@@ -125,6 +140,9 @@ void Choose_Class()
         playerTou = 6;
         playerMnd = 9;
         playerCha = 12;
+        damageStat = (playerCha / 4);
+        defenseStat = (playerTou / 4);
+
     } else {
         cout << "Try again." << endl;
         Choose_Class();
@@ -136,6 +154,7 @@ void Choose_Class()
 void Choose_Name()
 {
     DrawArt(drawNewChar);
+    cout << BEEP;
 
     cout << "\nHello, Player. Welcome to MYTHQUEST." << "\n\n";
     cout << "\nWhat is your " << BOLDWHITE << "NAME? \n" << RESET << endl;
@@ -199,6 +218,7 @@ void Story_Screen()
     cout << BOLDYELLOW;
     DrawArt(drawStoryScreen);
     cout << RESET;
+    cout << BEEP;
 
     sleep(5);
 }

@@ -1,9 +1,8 @@
 #include "header.cpp"
 
-string DrawArt(string printArt)
+void DrawArt(string printArt)
 {
-  cout << printArt << endl;
-  return printArt;
+    cout << printArt << endl;
 }
 
 void Draw_Loading()

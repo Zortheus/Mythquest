@@ -6,7 +6,6 @@ bool playerIsDead = false;
 bool monsterIsDead = false;
 bool combatOver = false;
 
-
 void Combat_Menu()
 {
     bool playerIsDead = false;
