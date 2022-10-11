@@ -1,9 +1,16 @@
 #include "header.cpp"
 
+int Damage_Modifier(int damageStat)
+{
+    int damageMod = (damageStat / 4) - 1;
+    return damageMod;
+}
+
 void Generate_Adventure()
 {
     int randomEncNum = (rand() % 9) + 1;
-
+    
+    // ADVENTURE FLAVOR TEXT
     cout << endl;
     if (randomEncNum == 1)
         cout << playerColor << playerName << RESET << " walked around. Then, out of nowhere..." << endl;
@@ -17,6 +24,7 @@ void Generate_Adventure()
     if (randomEncNum == 4)
         cout << playerColor << playerName << RESET << " walked down an old road. Heard a sound. Turned around and..." << endl;
 
+    // #5
     if (randomEncNum == 5 && hasKey == true)
         cout << playerColor << playerName << RESET << " explored an ancient ruin. Then all of a sudden..." << endl;
 
@@ -37,7 +45,16 @@ void Generate_Adventure()
     if (randomEncNum == 7)
         cout << "After a long day of adventuring, " << playerColor << playerName << RESET << " was returning home when..." << endl; 
 
-    if (randomEncNum == 8)
+
+    // #8
+
+    if (randomEncNum == 8 && hasMap == true)
+    {
+        cout << "While adventuring by the sea, " << playerColor << playerName << RESET << " witnessed a beautiful sunset. Just as it became dark...";
+        sleep(3);
+    }
+
+    if (randomEncNum == 8 && hasMap == false)
     {
         cout << "While adventuring by the sea, " << playerColor << playerName << RESET << " found a " << BOLDMAGENTA << "TREASURE MAP" << RESET << " inside of a bottle." << endl;
         sleep(3);
@@ -48,9 +65,12 @@ void Generate_Adventure()
         hasMap = true;
     }
 
-    if (randomEncNum == 9 && hasMap == false && hasJewel == false)
+    // #9
+    if (randomEncNum == 9 && hasMap == true && hasJewel == true)
     {
-        cout << playerColor << playerName << RESET << " searched a mysterious island for buried treasure. Nothing was found." << endl;
+        cout << playerColor << playerName << RESET << " returned to the mysterious island... but found nothing else." << endl;
+        sleep(3);
+        cout << "\nThen, out of nowhere..." << endl;
     }
 
     if (randomEncNum == 9 && hasMap == true && hasJewel == false)
@@ -64,11 +84,17 @@ void Generate_Adventure()
         hasJewel = true;
     }
 
-    if (randomEncNum == 9 && hasMap == true && hasJewel == true)
+    if (randomEncNum == 9 && hasMap == false && hasJewel == false)
     {
-        cout << playerColor << playerName << RESET << " returned to the mysterious island... but found nothing else." << endl;
+        cout << playerColor << playerName << RESET << " searched a mysterious island for buried treasure. Nothing was found." << endl;
+    }
+
+    if (randomEncNum == 10)
+    {
+        cout << "While walking through town " << playerColor << playerName << " encountered a shaman." << endl;
+        sleep(2);
+        cout << "The shaman said 'the JEWEL protects against the DEMITAUR!'" << endl; 
         sleep(3);
-        cout << "\nThen, out of nowhere..." << endl;
     }
 
     cout << endl;
@@ -77,12 +103,12 @@ void Generate_Adventure()
 
 void Generate_Encounter1()
 {
-    int randomEncNum = (rand() % 7) + 1;
+    int randomEncNum = (rand() % 10) + 1;
+    int monsterAR, monsterXP, monsterGold;
+    int randDamage, randXP, randGold;
 
-    switch(randomEncNum)
-    {
-        // Rat Encounter
-        case 1:
+    if (randomEncNum < 3) { // 20% chance
+            // DRAW
             DrawArt(drawRat);
             sleep(1);
             cout << "Attacked by RAT!" << endl;
@@ -99,34 +125,36 @@ void Generate_Encounter1()
             cout << "\nLost " << BOLDRED << "1 HP" << RESET << endl;
             sleep(3);
             playerHP--;
+            
             cout << "\nCurrent HP : " << BOLDRED << playerHP << " / " << playerHPTotal << RESET << endl;
-            break;
-
-        // Goblin Encounter
-        case 2:
+    }
+        else if (randomEncNum == 3 || randomEncNum == 4) { // 20% chance
             DrawArt(drawGoblin);
+            cout << BEEP;
             sleep(1);
             cout << "\nAttacked by GOBLIN!" << endl;
             sleep(3);
 
-            if (playerStr >= 10 || playerAgi >= 10)
+            if (playerStr >= 9 || playerAgi >= 9)
             {
                 cout << "\nGoblin slain!" << endl;
                 cout << "Gained " << BOLDGREEN << "5 XP" << RESET << endl;
                 cout << "Found " << BOLDYELLOW << "3 gold" << RESET << endl;
                 playerXP = playerXP + 5;
+                playerGold = playerGold + 3;
             }
 
             sleep(1);
+            
+            playerHP = playerHP - 3;
             cout << "\nLost " << BOLDRED << "3 HP" << RESET << endl;
             sleep(3);
-            playerHP = playerHP - 3;
+            
             cout << "\nCurrent HP : " << BOLDRED << playerHP << " / " << playerHPTotal << RESET << endl;
-            break;
-
-        // Demon Encounter
-        case 3:
+    }
+        else if (randomEncNum == 5) { // 10% chance
             DrawArt(drawDemon);
+            cout << BEEP;
             sleep(1);
             cout << "Attacked by DEMON!" << endl;
             sleep(3);
@@ -143,15 +171,14 @@ void Generate_Encounter1()
             sleep(3);
             playerHP = playerHP - 5;
             cout << "\nCurrent HP : " << BOLDRED << playerHP << " / " << playerHPTotal << RESET << endl;
-            break;
-
-        // Puzzle Encounter
-        case 4:
+    }
+        else if (randomEncNum == 6) { // 10% chance
             DrawArt(drawPuzzlePiece);
+            cout << BEEP;
             sleep(1);
             cout << "Found a puzzle! Can you solve it?" << endl;
             sleep(2);
-            if (playerMnd >= 8){
+            if (playerMnd >= 10){
                 cout << "\n\tSolved!" << endl;
                 sleep(1);
                 cout << "\n\nFound " << BOLDYELLOW << "10 gold" << RESET << endl;
@@ -166,26 +193,25 @@ void Generate_Encounter1()
                 cout << "\n\tUnable to solve! " << endl;
                 sleep(2);
             }
-            break;
-
-        // Campsite Encounter
-        case 5:
+    }
+        else if (randomEncNum == 7 || randomEncNum == 8) { // 20% chance
             DrawArt(drawCampsite);
+            cout << BEEP;
             sleep(1);
             cout << "Rested at CAMPSITE. HP and MP are full!" << endl;
             sleep(3);
             playerHP = playerHPTotal;
             playerMP = playerMPTotal;
-            break;
-
-        // Trapdoor encounter
-        case 6:
+    }
+        else if (randomEncNum == 9) { // 10% chance
             DrawArt(drawTrapDoor);
+            cout << BEEP;
             sleep(1);
 
-            if (playerAgi >= 10)
-            {
+            if (playerAgi >= 10) {
                 cout << "Trap door! Dodged at the last second." << endl;
+            } else if (playerMnd >= 10) {
+                cout << "Trap door! Disabled the trap." << endl;
             } else {
                 cout << "Fell through a trap door!" << endl;
                 cout << "Lost " << BOLDRED << "2 HP" << RESET << endl;
@@ -196,13 +222,10 @@ void Generate_Encounter1()
                 cout << "\nCurrent HP : " << BOLDRED << playerHP << " / " << playerHPTotal << RESET << endl;
                 cout << "\nCurrent Gold : " << BOLDYELLOW << playerGold << RESET << endl;
             }
-
-            sleep(3);
-            break;
-
-        // TRAVELLER ENCOUNTER
-        case 7:
+    }
+        else if (randomEncNum == 10) { // 10% chance
             DrawArt(drawTraveller);
+            cout << BEEP;
             sleep(1);
             cout << "\nMet a traveller on the road." << endl;
             sleep(1);
@@ -223,12 +246,8 @@ void Generate_Encounter1()
                 cout << "\nYou both said 'hello' and went your separate ways." << endl;
                 sleep(2);
             }
-
-            sleep(1);
-            break;
-
-        default:
-            break;
+    } else {
+        Generate_Encounter1();
     }
 
     sleep(3);

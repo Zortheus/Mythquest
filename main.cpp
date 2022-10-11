@@ -2,17 +2,20 @@
 // A text-based RPG for Mac Terminal
 // by AJP
 //
-// v0.2.1
+// v0.3.0
 
 #include "includes/header.cpp" 
 #include "includes/player.cpp"
 #include "includes/monster.cpp"
-#include "includes/encountersimp.cpp"
+#include "includes/encounters.cpp" 
+//#include "includes/bossfight.h"
 #include <iostream>
 
 bool gameOver = false;
 bool exitGame = false;
 int mainMenuNum;
+
+//bossfight
 
 void Boss_Fight()
 {
@@ -20,6 +23,7 @@ void Boss_Fight()
 
     cout << BOLDWHITE;
     DrawArt(drawCastle);
+    cout << BEEP;
     cout << RESET;
 
     sleep(3);
@@ -28,6 +32,7 @@ void Boss_Fight()
     {
         cout << BOLDYELLOW;
         DrawArt(drawKey);
+        cout << BEEP;
         cout << RESET;
 
         sleep(1);
@@ -38,6 +43,7 @@ void Boss_Fight()
         
         cout << BOLDRED;
         DrawArt(drawMenuDemon);
+        cout << BEEP;
         cout << RESET;
 
         cout << "\n\n" << BOLDWHITE << "BOSS FIGHT : DEMOTAUR" << RESET << endl;
@@ -51,8 +57,12 @@ void Boss_Fight()
         cout << ".";
         sleep(1);
 
-        if (playerLevel >= 5)
+        if (hasJewel == true)
         {
+            cout << BEEP;
+            cout << "JEWEL protected " << playerColor << playerName << " from DEMOTAUR's wrath!" << endl;
+            sleep(2);
+            cout << BEEP;
             cout << "\nDEMOTAUR HAS BEEN SLAIN!" << endl;
             sleep(3);
             cout << playerColor << playerName << " is victorious!" << RESET << endl;
@@ -60,6 +70,7 @@ void Boss_Fight()
             gameOver = true;
             sleep(3);
         } else {
+            cout << BEEP;
             cout << "\nDEMOTAUR IS TOO POWERFUL! " << endl;
             sleep(3);
             cout << playerColor << playerName << " lost 10 HP!" << RESET << endl;
@@ -67,6 +78,7 @@ void Boss_Fight()
             sleep(3);
         }
     } else {
+        cout << BEEP;
         cout << "\nNeed CASTLE KEY!" << endl;
         sleep(3);
     }
@@ -100,8 +112,9 @@ void Title_Screen()
 void Level_Up_Menu()
 {
     system("clear");
-
+    
     DrawArt(drawLevelUpMenu);
+    cout << BEEP;
 
     do {
         Level_Up_Stats();
@@ -147,6 +160,7 @@ void Shop_Menu()
     system("clear");
     
     DrawArt(drawShopMenu);
+    cout << BEEP;
 
     int shopMenuNum;
     cout << "\nWelcome, " << playerColor << playerName << RESET << "!" << endl;
@@ -167,6 +181,7 @@ void Shop_Menu()
 
         cout << BOLDRED;
         DrawArt(drawPotion);
+        cout << BEEP;
         cout << RESET;
         sleep(1);
 
@@ -178,7 +193,7 @@ void Shop_Menu()
         cout << endl;
         sleep(4);
     } else if (shopMenuNum == 1 && playerGold < 5) {
-        cout << "\nNot enough gold!" << endl;
+        cout << BEEP << "\nNot enough gold!" << endl;
         sleep(2);
         Shop_Menu();
     } else if (shopMenuNum == 0) {
@@ -196,6 +211,7 @@ void Item_Menu()
 
     int itemMenuNum;
     DrawArt(drawItemMenu);
+    cout << BEEP;
 
     cout << "\n\n\n";
 
@@ -232,6 +248,7 @@ void Stats_Menu()
     system("clear");
 
     DrawArt(drawStatsMenu);
+    cout << BEEP;
 
     Print_playerImage();
     Print_playerStats();
@@ -239,6 +256,7 @@ void Stats_Menu()
     cin.clear();
     cout << BOLDBLACK << "ENTER 0 to EXIT" << RESET << endl;
     int exitMenu;
+    cout << "> ";
     cin >> exitMenu;
 
     switch(exitMenu)
@@ -258,6 +276,7 @@ void Town_Menu()
     // DRAW TOWN MENU
     cout << BOLDWHITE;
     DrawArt(drawTown);
+    cout << BEEP;
     cout << RESET;
 
     cout << "\n ENTER 1 | " << BOLDRED << "ADVENTURE" << RESET;
@@ -303,6 +322,7 @@ void Game_Over()
 {
     system("clear");
     DrawArt(drawGameOver);
+    cout << BEEP;
     sleep(3);
     cout << endl;
 }
@@ -320,6 +340,7 @@ void Victory_Menu()
     sleep(3);
     cout << "\n\n\nThank you for playing MYTHQUEST!" << endl;
     sleep(5);
+    cout << BEEP;
 }
 
 int main()
