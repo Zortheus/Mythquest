@@ -2,20 +2,16 @@
 // A text-based RPG for Mac Terminal
 // by AJP
 //
-// v0.3.0
+// v0.4.0
 
 #include "includes/header.cpp" 
 #include "includes/player.cpp"
 #include "includes/monster.cpp"
 #include "includes/encounters.cpp" 
-//#include "includes/bossfight.h"
-#include <iostream>
 
 bool gameOver = false;
 bool exitGame = false;
 int mainMenuNum;
-
-//bossfight
 
 void Boss_Fight()
 {
@@ -30,14 +26,14 @@ void Boss_Fight()
 
     if (hasKey == true)
     {
-        cout << BOLDYELLOW;
+        cout << BOLDYELLOW << "\t";
         DrawArt(drawKey);
         cout << BEEP;
         cout << RESET;
 
         sleep(1);
-        cout << "Used CASTLE KEY!" << endl;
-        sleep(1);
+        cout << "\tUsed CASTLE KEY!" << endl;
+        sleep(3);
         
         system("clear");
         
@@ -48,43 +44,45 @@ void Boss_Fight()
 
         cout << "\n\n" << BOLDWHITE << "BOSS FIGHT : DEMOTAUR" << RESET << endl;
         sleep(3);
-        cout << "\n" << BOLDMAGENTA << "Are you strong enough to defeat him?" << RESET << endl;
+        cout << "\n" << BOLDMAGENTA << "Are you strong enough to defeat him? \n" << RESET << endl;
         sleep(3);
-        cout << ".";
+        cout << "." << endl;
         sleep(1);
-        cout << ".";
+        cout << "." << endl;
         sleep(1);
-        cout << ".";
+        cout << "." << endl;
         sleep(1);
 
         if (hasJewel == true)
         {
             cout << BEEP;
-            cout << "JEWEL protected " << playerColor << playerName << " from DEMOTAUR's wrath!" << endl;
-            sleep(2);
+            cout << "\n\tJEWEL protected " << playerColor << playerName << RESET << " from DEMOTAUR's wrath!" << endl;
+            sleep(5);
             cout << BEEP;
-            cout << "\nDEMOTAUR HAS BEEN SLAIN!" << endl;
-            sleep(3);
-            cout << playerColor << playerName << " is victorious!" << RESET << endl;
+            cout << "\n\tDEMOTAUR HAS BEEN SLAIN!" << endl;
+            sleep(5);
+            cout << "\n\t" << playerColor << playerName << RESET << " is victorious!" << endl;
             bossSlain = true;
             gameOver = true;
-            sleep(3);
+            sleep(5);
         } else {
             cout << BEEP;
             cout << "\nDEMOTAUR IS TOO POWERFUL! " << endl;
             sleep(3);
-            cout << playerColor << playerName << " lost 10 HP!" << RESET << endl;
+            cout << playerColor << playerName << RESET << " lost 10 HP!" << endl;
             playerHP = playerHP - 10;
             sleep(3);
         }
     } else {
         cout << BEEP;
-        cout << "\nNeed CASTLE KEY!" << endl;
+        cout << "\n\tNeed CASTLE KEY!" << endl;
         sleep(3);
     }
 
     if (playerHP <= 0)
     {
+        cout << "\n" << playerColor << playerName << RESET << " has been slain!" << endl;
+        sleep(3);
         gameOver = true;
     }
 }
@@ -330,16 +328,22 @@ void Game_Over()
 void Victory_Menu()
 {
     system("clear");
+    sleep(2);
     DrawArt(drawVictory);
-    sleep(1);
-    DrawArt(drawTheEnd);
     sleep(3);
-    cout << "\n\n";
+    cout << "\n\t";
     Print_playerImage();
-    cout << playerColor << playerName << RESET << " found the key, slayed the boss, and become a true hero." << endl;
+    cout << playerColor << playerName << RESET << " found the key, slayed the boss, and become a true hero!" << endl;
     sleep(3);
-    cout << "\n\n\nThank you for playing MYTHQUEST!" << endl;
+    cout << "\n\n\n\n\tThank you for playing MYTHQUEST" << endl;
+    cout << BEEP;
     sleep(5);
+
+
+    system("clear");
+    DrawArt(drawTheEnd);
+    sleep(6);
+
     cout << BEEP;
 }
 
