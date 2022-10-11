@@ -1,7 +1,7 @@
 # Mythquest
 Testing Text RPG Ideas
 
-Update v0.2.1
+Update v0.3.0
 Date: 10/10/2022
 
   1. Added Jester Class
