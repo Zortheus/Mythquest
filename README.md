@@ -1,6 +1,15 @@
 # Mythquest
 Testing Text RPG Ideas
 
+Update v0.4.0
+Date: 10/11/2022
+  
+  1. Updated final boss battle
+  2. Altered formatting of encounters and changed rewards
+  3. Balance changes to classes and encounters
+
+_________________________
+
 Update v0.3.0
 Date: 10/10/2022
 
