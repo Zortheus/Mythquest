@@ -1,6 +1,11 @@
 # Mythquest
 Testing Text RPG Ideas
 
+Update v0.5.0
+Date: 3/25/2026
+
+  1. Added Windows compatibility
+
 Update v0.4.0
 Date: 10/11/2022
   

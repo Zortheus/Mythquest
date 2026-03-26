@@ -13,7 +13,7 @@ void Combat_Menu()
     bool combatOver = false;
 
     do {
-        system("clear");
+        CLEAR;
         //Print_playerImage();
                 //Print_MonsterImage
 

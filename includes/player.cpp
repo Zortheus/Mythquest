@@ -46,7 +46,7 @@ void Choose_Class()
     cin >> playerClassNum;
     
     sleep(1);
-    system("clear");
+    CLEAR;
 
     if (playerClassNum == 1)
     {
@@ -212,7 +212,7 @@ void Level_Up_Stats()
 
 void Story_Screen()
 {
-    system("clear");
+    CLEAR;
     sleep(1);
 
     cout << BOLDYELLOW;

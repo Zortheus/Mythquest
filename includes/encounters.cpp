@@ -132,7 +132,7 @@ void Generate_Encounter1()
     }
         else if (randomEncNum == 3 || randomEncNum == 4) { // 20% chance
             DrawArt(drawGoblin);
-            cout << BEEP;
+            BEEP;
             sleep(1);
             cout << "\nAttacked by GOBLIN! \n" << endl;
             sleep(3);
@@ -157,7 +157,7 @@ void Generate_Encounter1()
     }
         else if (randomEncNum == 5) { // 10% chance
             DrawArt(drawDemon);
-            cout << BEEP;
+            BEEP;
             sleep(1);
             cout << "Attacked by DEMON! \n" << endl;
             sleep(3);
@@ -179,7 +179,7 @@ void Generate_Encounter1()
     }
         else if (randomEncNum == 6) { // 10% chance
             DrawArt(drawPuzzlePiece);
-            cout << BEEP;
+            BEEP;
             sleep(1);
             cout << "Found a puzzle! Tried to solve it...\n" << endl;
             sleep(3);
@@ -201,7 +201,7 @@ void Generate_Encounter1()
     }
         else if (randomEncNum == 7 || randomEncNum == 8) { // 20% chance
             DrawArt(drawCampsite);
-            cout << BEEP;
+            BEEP;
             sleep(1);
             cout << playerColor << playerName << RESET << " rested at a campsite." << endl;
             sleep(2);
@@ -212,7 +212,7 @@ void Generate_Encounter1()
     }
         else if (randomEncNum == 9) { // 10% chance
             DrawArt(drawTrapDoor);
-            cout << BEEP;
+            BEEP;
             sleep(1);
 
             if (playerAgi >= 10) {
@@ -248,7 +248,7 @@ void Generate_Encounter1()
     }
         else if (randomEncNum == 10) { // 10% chance
             DrawArt(drawTraveller);
-            cout << BEEP;
+            BEEP;
             sleep(1);
             cout << "\nMet a traveller on the road." << endl;
             sleep(3);

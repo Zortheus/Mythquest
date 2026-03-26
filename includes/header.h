@@ -3,13 +3,22 @@
 #define HEADER_H
     #include <iostream>
     #include <vector>
-    #include <unistd.h>
     #include <iomanip> 
     #include <fstream>
     #include <string>
     #include <chrono>
     #include <thread>
-    
+    #include <cstdlib>
+
+    #ifdef _WIN32
+        #include <windows.h>
+        #define sleep(n) Sleep((n) * 1000)
+        #define CLEAR system("cls")
+    #else
+        #include <unistd.h>
+        #define CLEAR system("clear")
+    #endif
+
     using std::cout;
     using std::cin;
     using std::string;
@@ -40,7 +49,5 @@
     #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 
     #define BEEP "\007"
-
-
 
 #endif

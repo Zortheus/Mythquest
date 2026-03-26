@@ -2,7 +2,7 @@
 
 void Boss_Fight()
 {
-    system("clear");
+    CLEAR;
 
     cout << BOLDWHITE;
     DrawArt(drawCastle);
@@ -22,7 +22,7 @@ void Boss_Fight()
         cout << "Used CASTLE KEY!" << endl;
         sleep(1);
         
-        system("clear");
+        CLEAR;
         
         cout << BOLDRED;
         DrawArt(drawMenuDemon);
