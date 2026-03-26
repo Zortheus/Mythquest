@@ -6,6 +6,8 @@ Date: 3/25/2026
 
   1. Added Windows compatibility
 
+_________________________
+
 Update v0.4.0
 Date: 10/11/2022
   
